@@ -33,7 +33,7 @@ Gloriosos:[
 };
 let selectedMystery=mysteryByDay[new Date().getDay()],mysteryIndex=0;
 const today=new Date();document.querySelector('#dayName').textContent=names[today.getDay()];
-function bibleLink(ref){return 'https://www.bibliacatolica.com.br/biblia-ave-maria/busca/?q='+encodeURIComponent(ref)}
+function bibleLink(ref){return 'https://www.bibliacatolica.com.br/biblia-ave-maria/busca/?q='+encodeURIComponent(ref.replace(/;.*$/,''))}
 function renderMystery(){
  document.querySelector('#dayMystery').textContent='Mistérios '+selectedMystery;
  const m=rosaryMysteries[selectedMystery][mysteryIndex];
