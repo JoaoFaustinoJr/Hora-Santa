@@ -36,7 +36,7 @@ const today=new Date();document.querySelector('#dayName').textContent=names[toda
 function renderMystery(){
  document.querySelector('#dayMystery').textContent='Mistérios '+selectedMystery;
  const m=rosaryMysteries[selectedMystery][mysteryIndex];
- document.querySelector('#mysteryMeditation').innerHTML='<article class="mystery-card"><div class="mystery-number">'+(mysteryIndex+1)+'º MISTÉRIO</div><h3>'+m[0]+'</h3><div class="scripture-ref">'+m[1]+'</div><p>'+m[2]+'</p><div class="decade-order">Pai-Nosso · 10 Ave-Marias · Glória ao Pai · Jaculatória</div><small>Meditação editorial baseada no mistério e na referência bíblica indicada.</small></article>';
+ document.querySelector('#mysteryMeditation').innerHTML='<article class="mystery-card"><div class="mystery-number">'+(mysteryIndex+1)+'º MISTÉRIO</div><h3>'+m[0]+'</h3><div class="scripture-ref">'+m[1]+'</div><p>'+m[2]+'</p><div class="decade-order">1 Pai-Nosso · 10 Ave-Marias · 1 Glória ao Pai · Jaculatória</div><small>Meditação editorial baseada no mistério e na referência bíblica indicada.</small></article>';
  document.querySelector('#mysteryPrev').disabled=mysteryIndex===0;document.querySelector('#mysteryNext').disabled=mysteryIndex===4;
 }
 document.querySelectorAll('[data-m]').forEach(b=>b.addEventListener('click',()=>{selectedMystery=b.dataset.m;mysteryIndex=0;resetBeads();renderMystery()}));
