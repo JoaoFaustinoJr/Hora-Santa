@@ -3,24 +3,24 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#07182b"><title>Hora Santa — Adoração Eucarística</title>
-<link rel="manifest" href="manifest.webmanifest"><link rel="stylesheet" href="styles.css">
+<link rel="manifest" href="manifest.webmanifest"><link rel="stylesheet" href="styles.css?v=2">
 </head>
 <body>
 <header class="hero">
-  <div class="host"><span>IHS</span></div>
+  <div class="eucharist" aria-hidden="true"><i class="ray r1"></i><i class="ray r2"></i><i class="ray r3"></i><i class="ray r4"></i><div class="host"><span>IHS</span></div><div class="stem"></div><div class="base"></div></div>
   <p class="eyebrow">ADORAÇÃO EUCARÍSTICA</p><h1>Hora Santa</h1>
   <p class="verse">“Ficai aqui e vigiai comigo.” <small>Mt 26,38</small></p>
 </header>
 <main>
 <section id="home" class="screen active">
-  <button class="primary" data-go="guide">✦ Conduzir Adoração</button>
-  <div class="grid">
-    <button data-go="now">◉<b>Adorar Agora</b><span>Igreja ou em casa</span></button>
-    <button data-go="rosary">✧<b>Rosário e Terços</b><span>Oração guiada</span></button>
+  <button class="primary main-action" data-go="guide"><span class="symbol">✦</span><b>Conduzir Adoração</b><small>Roteiro passo a passo</small></button>
+  <div class="grid main-paths">
+    <button data-go="now"><span class="symbol">◉</span><b>Adorar Agora</b><span>Igreja ou em casa</span></button>
+    <button data-go="rosary"><span class="symbol">✧</span><b>Rosário e Terços</b><span>Com Santa Maria, para Jesus</span></button>
   </div>
   <nav class="tiles">
-    <button data-go="prepare">Preparar<br>Adoração</button><button data-go="prayers">Orações</button>
-    <button data-go="songs">Cantos</button><button data-go="bible">Bíblia</button>
+    <button data-go="prepare"><span>◇</span>Preparar Adoração</button><button data-go="prayers"><span>†</span>Orações</button>
+    <button data-go="songs"><span>♪</span>Cantos</button><button data-go="bible"><span>☰</span>Bíblia</button>
   </nav>
 </section>
 
@@ -37,12 +37,8 @@
  <button class="back">‹ Início</button><p class="eyebrow">COM SANTA MARIA, CONTEMPLAMOS CRISTO</p><h2>Santo Rosário</h2>
  <div class="mystery"><span>Hoje</span><strong id="dayMystery"></strong><small id="dayName"></small></div>
  <p>Você pode seguir a sugestão do dia ou escolher outro conjunto de mistérios.</p>
- <div class="choices">
-  <button data-m="Gozosos">Gozosos</button><button data-m="Luminosos">Luminosos</button>
-  <button data-m="Dolorosos">Dolorosos</button><button data-m="Gloriosos">Gloriosos</button>
- </div>
- <div id="decade" class="beads" aria-label="Contador de Ave-Marias"></div>
- <p id="countLabel">Toque nas contas conforme reza.</p>
+ <div class="choices"><button data-m="Gozosos">Gozosos</button><button data-m="Luminosos">Luminosos</button><button data-m="Dolorosos">Dolorosos</button><button data-m="Gloriosos">Gloriosos</button></div>
+ <div id="decade" class="beads" aria-label="Contador de Ave-Marias"></div><p id="countLabel">Toque nas contas conforme reza.</p>
 </section>
 
 <section id="now" class="screen"><button class="back">‹ Início</button><p class="eyebrow">CAPELA VIRTUAL</p><h2>Adorar Agora</h2><div class="grid"><button><b>Na igreja</b><span>Modo contemplativo</span></button><button><b>Em casa</b><span>Transmissões ao vivo</span></button></div><div class="notice">A transmissão pode auxiliar a oração em casa, mas não substitui a presença física diante da Santíssima Eucaristia.</div></section>
@@ -51,6 +47,5 @@
 <section id="songs" class="screen"><button class="back">‹ Início</button><h2>Cantos</h2><p>Os cantos serão organizados pelo momento da adoração, para que a condutora saiba o que é apropriado cantar em cada etapa.</p></section>
 <section id="bible" class="screen"><button class="back">‹ Início</button><h2>Palavra de Deus</h2><p>Seleção eucarística e cristocêntrica para oração e meditação.</p></section>
 </main>
-<footer>Quanto mais profunda a Adoração, menos o aplicativo disputa a atenção do adorador.</footer>
 <script src="app.js"></script>
 </body></html>
