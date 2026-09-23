@@ -42,9 +42,13 @@ function renderMystery(){
 document.querySelectorAll('[data-m]').forEach(b=>b.addEventListener('click',()=>{selectedMystery=b.dataset.m;mysteryIndex=0;resetBeads();renderMystery()}));
 document.querySelector('#mysteryPrev').onclick=()=>{if(mysteryIndex){mysteryIndex--;resetBeads();renderMystery()}};
 document.querySelector('#mysteryNext').onclick=()=>{if(mysteryIndex<4){mysteryIndex++;resetBeads();renderMystery()}};
+const finishRosary=document.querySelector('#finishRosary'),rosaryClosing=document.querySelector('#rosaryClosing');
+function updateRosaryFinish(){if(mysteryIndex===4&&count===10)finishRosary.classList.remove('hidden');else finishRosary.classList.add('hidden')}
+finishRosary.onclick=()=>{rosaryClosing.classList.remove('hidden');finishRosary.classList.add('hidden');rosaryClosing.scrollIntoView({behavior:'smooth',block:'start'})};
+document.querySelector('#closeRosary').onclick=()=>{rosaryClosing.classList.add('hidden');document.querySelector('#rosaryOpening').classList.remove('hidden');document.querySelector('#rosaryContemplation').classList.add('hidden');mysteryIndex=0;resetBeads();renderMystery();go('home')};
 const decade=document.querySelector('#decade');let count=0;
-function resetBeads(){count=0;[...decade.children].forEach(x=>x.classList.remove('done'));document.querySelector('#countLabel').textContent='Toque nas contas conforme reza.'}
-for(let i=1;i<=10;i++){const b=document.createElement('button');b.className='bead';b.setAttribute('aria-label','Ave-Maria '+i);b.addEventListener('click',()=>{b.classList.toggle('done');count=[...decade.children].filter(x=>x.classList.contains('done')).length;document.querySelector('#countLabel').textContent=count+' de 10 Ave-Marias';});decade.appendChild(b)}
+function resetBeads(){count=0;[...decade.children].forEach(x=>x.classList.remove('done'));document.querySelector('#countLabel').textContent='Toque nas contas conforme reza.';if(typeof updateRosaryFinish==='function')updateRosaryFinish()}
+for(let i=1;i<=10;i++){const b=document.createElement('button');b.className='bead';b.setAttribute('aria-label','Ave-Maria '+i);b.addEventListener('click',()=>{b.classList.toggle('done');count=[...decade.children].filter(x=>x.classList.contains('done')).length;document.querySelector('#countLabel').textContent=count+' de 10 Ave-Marias';updateRosaryFinish();});decade.appendChild(b)}
 renderMystery();
 document.querySelector('#beginMysteries').onclick=()=>{document.querySelector('#rosaryOpening').classList.add('hidden');document.querySelector('#rosaryContemplation').classList.remove('hidden');document.querySelector('#mysteryMeditation').scrollIntoView({behavior:'smooth',block:'start'})};
 
