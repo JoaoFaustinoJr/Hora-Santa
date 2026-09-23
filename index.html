@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#07182b"><title>Hora Santa — Adoração Eucarística</title>
-<link rel="manifest" href="manifest.webmanifest"><link rel="stylesheet" href="styles.css?v=8">
+<link rel="manifest" href="manifest.webmanifest"><link rel="stylesheet" href="styles.css?v=9">
 </head>
 <body>
 <header class="hero">
@@ -13,6 +13,7 @@
 </header>
 <main>
 <section id="home" class="screen active">
+  <div id="thursdayStatus" class="adoration-status"></div>
   <button class="primary main-action" data-go="guide"><span class="symbol">✦</span><b>Conduzir Adoração</b><small>Roteiro passo a passo</small></button>
   <div class="grid main-paths">
     <button data-go="now"><span class="symbol">◉</span><b>Adorar Agora</b><span>Igreja ou em casa</span></button>
@@ -20,7 +21,7 @@
   </div>
   <nav class="tiles">
     <button data-go="prepare"><span>◇</span>Preparar Adoração</button><button data-go="prayers"><span>†</span>Orações</button>
-    <button data-go="songs"><span>♪</span>Cantos</button><button data-go="bible"><span>☰</span>Bíblia</button><button data-go="sources"><span>✓</span>Fontes</button>
+    <button data-go="songs"><span>♪</span>Cantos</button><button data-go="bible"><span>☰</span>Bíblia</button><button data-go="calendar"><span>▣</span>Calendário</button><button data-go="sources"><span>✓</span>Fontes</button>
   </nav>
 </section>
 
@@ -58,6 +59,7 @@
 </section>
 
 <section id="now" class="screen"><button class="back">‹ Início</button><p class="eyebrow">CAPELA VIRTUAL</p><h2>Adorar Agora</h2><div class="grid"><button><b>Na igreja</b><span>Modo contemplativo</span></button><a class="live-card" href="https://www.youtube.com/@EWTNPolska/streams" target="_blank" rel="noopener"><b>Em casa · Ao vivo</b><span>Niepokalanów, Polônia</span></a></div><article class="marian-live"><em>✦ ADORAÇÃO PERPÉTUA INTERNACIONAL</em><h3>Capela Estrela da Imaculada</h3><p>Em Niepokalanów, a imagem de Santa Maria acolhe ao centro o ostensório com o Santíssimo Sacramento. A transmissão integra a iniciativa internacional de oração pela paz.</p><a href="https://www.youtube.com/@EWTNPolska/streams" target="_blank" rel="noopener">Abrir transmissão de adoração ›</a></article><div class="notice">A transmissão pode auxiliar a oração em casa, mas não substitui a presença física diante da Santíssima Eucaristia.</div></section>
+<section id="calendar" class="screen"><button class="back">‹ Início</button><p class="eyebrow">QUINTA-FEIRA EUCARÍSTICA</p><h2>Calendário da Adoração</h2><div id="adorationCalendar" class="adoration-calendar"></div><div class="calendar-actions"><button class="primary" id="calendarAdd">Adicionar próximas quintas ao calendário</button><button id="notifyAdoration">Ativar alerta no aparelho</button></div><p class="rosary-note">A Adoração habitual é marcada às quintas-feiras. O botão de calendário cria eventos no calendário do aparelho; os alertas do próprio calendário são a forma mais confiável de lembrar mesmo com o app fechado.</p></section>
 <section id="prepare" class="screen"><button class="back">‹ Início</button><h2>Preparar Adoração</h2><p>Monte um roteiro com Palavra, meditação, silêncio, intercessões, devoções e cantos.</p></section>
 <section id="prayers" class="screen"><button class="back">‹ Início</button><p class="eyebrow">BIBLIOTECA DEVOCIONAL</p><h2>Orações</h2><div class="library-list">
 <button class="library-item" data-prayer="spirit"><b>Vinde, Espírito Santo</b><span>Preparação para a oração</span></button>
@@ -88,5 +90,5 @@
 <div class="source-card editorial"><span>✦ TEXTO CONTEMPLATIVO</span><h3>Meditações do aplicativo</h3><p>Textos breves redigidos para auxiliar a contemplação. Não são citações do Magistério nem substituem a Sagrada Escritura. Cada meditação é vinculada ao mistério e à passagem bíblica correspondente.</p></div>
 <div class="source-card devotional"><span>† ORAÇÃO DEVOCIONAL</span><h3>Orações tradicionais e familiares</h3><p>Serão identificadas individualmente quanto à origem. Fórmulas familiares não serão apresentadas como textos litúrgicos oficiais.</p></div>
 </section></main>
-<script src="app.js?v=9"></script>
+<script src="app.js?v=10"></script>
 </body></html>
