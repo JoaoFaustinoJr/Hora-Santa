@@ -33,6 +33,7 @@ Gloriosos:[
 };
 let selectedMystery=mysteryByDay[new Date().getDay()],mysteryIndex=0;
 const today=new Date();document.querySelector('#dayName').textContent=names[today.getDay()];
+function bibleLink(ref){return 'https://www.bibliacatolica.com.br/biblia-ave-maria/busca/?q='+encodeURIComponent(ref)}
 function renderMystery(){
  document.querySelector('#dayMystery').textContent='Mistérios '+selectedMystery;
  const m=rosaryMysteries[selectedMystery][mysteryIndex];
@@ -94,3 +95,5 @@ family:{title:'Pelas famílias',text:'Senhor Jesus, olhai por nossas famílias. 
 vocations:{title:'Pelas vocações',text:'Senhor da messe, suscitai vocações santas para o sacerdócio, a vida consagrada, o matrimônio e o serviço generoso na Igreja. Dai aos jovens coragem para escutar e responder ao vosso chamado.'}
 };
 document.querySelectorAll('[data-prayer]').forEach(b=>b.addEventListener('click',()=>{const p=prayers[b.dataset.prayer],r=document.querySelector('#prayerReader');r.innerHTML='<em>ORAÇÃO</em><h3>'+p.title+'</h3><p>'+p.text+'</p>';r.classList.remove('hidden');r.scrollIntoView({behavior:'smooth',block:'center'})}));
+
+document.querySelectorAll('.scripture[data-ref]').forEach(b=>{b.addEventListener('click',()=>window.open(bibleLink(b.dataset.ref),'_blank','noopener'))});
