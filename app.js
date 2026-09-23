@@ -33,7 +33,15 @@ Gloriosos:[
 };
 let selectedMystery=mysteryByDay[new Date().getDay()],mysteryIndex=0;
 const today=new Date();document.querySelector('#dayName').textContent=names[today.getDay()];
-function bibleLink(ref){return 'https://www.bibliacatolica.com.br/biblia-ave-maria/busca/?q='+encodeURIComponent(ref.replace(/;.*$/,''))}
+function bibleLink(ref){
+ const r=ref.replace(/;.*$/,'').trim();
+ const m=r.match(/^([1-3]?\s?[A-Za-zÀ-ÿ]+)\s+(\d+)(?:[,.:](\d+))?(?:[-–](\d+))?/);
+ if(!m)return 'https://www.bibliacatolica.com.br/biblia-ave-maria/';
+ const aliases={'Jo':'sao-joao','Lc':'sao-lucas','Mt':'sao-mateus','Mc':'sao-marcos','At':'atos-dos-apostolos','1Cor':'i-corintios','2Cor':'ii-corintios','Sl':'salmos'};
+ const key=m[1].replace(/\s/g,'');
+ const book=aliases[key]; if(!book)return 'https://www.bibliacatolica.com.br/biblia-ave-maria/';
+ return 'https://www.bibliacatolica.com.br/biblia-ave-maria/'+book+'/'+m[2]+'/';
+}
 function renderMystery(){
  document.querySelector('#dayMystery').textContent='Mistérios '+selectedMystery;
  const m=rosaryMysteries[selectedMystery][mysteryIndex];
