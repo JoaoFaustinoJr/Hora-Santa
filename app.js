@@ -58,7 +58,7 @@ const guideSteps=[
 {kind:'read',title:'Acolhida',time:'2 min',body:'Irmãos e irmãs, estamos reunidos diante de Jesus Cristo presente no Santíssimo Sacramento. Em silêncio, coloquemos diante dele nossa vida, nossas famílias, nossas alegrias, necessidades e intenções.'},
 {kind:'rubric',title:'Canto de adoração',time:'4 min',body:'Escolha um canto apropriado de adoração. Ao terminar, não tenha pressa em falar: deixe a assembleia recolher-se.'},
 {kind:'silence',title:'Silêncio',time:'5 min',body:'Não é necessário dizer nada. Permaneçamos diante de Jesus presente no Santíssimo Sacramento.',seconds:300},
-{kind:'read',title:'Palavra de Deus',time:'6 min',body:'Leitura sugerida: João 15,1-11. Leia a passagem diretamente da Bíblia. Ao final, permaneça alguns instantes em silêncio antes da meditação.'},
+{kind:'read',title:'Palavra de Deus',time:'6 min',body:'Leitura sugerida: <button type="button" class="guide-scripture-link" data-guide-ref="Jo 15,1-11">João 15,1-11 · Ler o texto bíblico ›</button> Ao final, permaneça alguns instantes em silêncio antes da meditação.'},
 {kind:'read',title:'Meditação',time:'6 min',body:'Jesus nos chama a permanecer nele. A adoração não é preencher o tempo com palavras, mas consentir que sua presença alcance nossa vida. Apresentemos ao Senhor aquilo que precisa permanecer unido a Ele e aquilo que precisa ser transformado.'},
 {kind:'silence',title:'Silêncio de contemplação',time:'7 min',body:'Permaneçamos em silêncio, acolhendo a Palavra e deixando que ela desça ao coração.',seconds:420},
 {kind:'read',title:'Louvor e ação de graças',time:'5 min',body:'Senhor Jesus, nós vos adoramos e vos damos graças. Obrigado pelo dom da Eucaristia, pela Igreja, por nossas famílias e por todas as graças recebidas. Recebei nosso louvor e nossa gratidão.'},
@@ -77,7 +77,19 @@ function renderGuide(){
  document.querySelector('#guidePrev').disabled=guideIndex===0;
  document.querySelector('#guideNext').textContent=guideIndex===guideSteps.length-1?'Concluir':'Próximo ›';
  if(s.kind==='silence') document.querySelector('#startSilence').onclick=startGuideTimer;
+ const scriptureBtn=stage.querySelector('[data-guide-ref]');
+ if(scriptureBtn) scriptureBtn.onclick=()=>openGuideScripture(scriptureBtn.dataset.guideRef);
 }
+function openGuideScripture(ref){
+ sessionStorage.setItem('horaSantaGuideReturn',JSON.stringify({guideIndex,scrollY:window.scrollY}));
+ const w=window.open(bibleLink(ref),'_blank');
+ if(!w) location.href=bibleLink(ref);
+}
+window.addEventListener('focus',()=>{
+ const saved=sessionStorage.getItem('horaSantaGuideReturn');if(!saved)return;
+ try{const r=JSON.parse(saved);if(Number.isInteger(r.guideIndex)){guideIndex=r.guideIndex;renderGuide();requestAnimationFrame(()=>window.scrollTo({top:r.scrollY||0,behavior:'auto'}));}}catch(e){}
+ sessionStorage.removeItem('horaSantaGuideReturn');
+});
 function startGuideTimer(e){
  if(timerHandle){clearInterval(timerHandle);timerHandle=null;e.target.textContent='Continuar silêncio';return}
  const s=guideSteps[guideIndex]; if(!remaining) remaining=s.seconds;e.target.textContent='Pausar';
