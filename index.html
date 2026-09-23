@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#07182b"><title>Hora Santa — Adoração Eucarística</title>
-<link rel="manifest" href="manifest.webmanifest"><link rel="stylesheet" href="styles.css?v=4">
+<link rel="manifest" href="manifest.webmanifest"><link rel="stylesheet" href="styles.css?v=5">
 </head>
 <body>
 <header class="hero">
@@ -20,7 +20,7 @@
   </div>
   <nav class="tiles">
     <button data-go="prepare"><span>◇</span>Preparar Adoração</button><button data-go="prayers"><span>†</span>Orações</button>
-    <button data-go="songs"><span>♪</span>Cantos</button><button data-go="bible"><span>☰</span>Bíblia</button>
+    <button data-go="songs"><span>♪</span>Cantos</button><button data-go="bible"><span>☰</span>Bíblia</button><button data-go="sources"><span>✓</span>Fontes</button>
   </nav>
 </section>
 
@@ -36,8 +36,10 @@
 <section id="rosary" class="screen">
  <button class="back">‹ Início</button><p class="eyebrow">COM SANTA MARIA, CONTEMPLAMOS CRISTO</p><h2>Santo Rosário</h2>
  <div class="mystery"><span>Hoje</span><strong id="dayMystery"></strong><small id="dayName"></small></div>
- <p>Você pode seguir a sugestão do dia ou escolher outro conjunto de mistérios.</p>
+ <p class="rosary-note">A distribuição segue a indicação de São João Paulo II: Gozosos (segunda e sábado), Dolorosos (terça e sexta), Gloriosos (quarta e domingo) e Luminosos (quinta). A escolha pode ser adaptada por razões espirituais, pastorais ou litúrgicas.</p>
  <div class="choices"><button data-m="Gozosos">Gozosos</button><button data-m="Luminosos">Luminosos</button><button data-m="Dolorosos">Dolorosos</button><button data-m="Gloriosos">Gloriosos</button></div>
+ <div id="mysteryMeditation"></div>
+ <div class="rosary-nav"><button id="mysteryPrev">‹ Mistério anterior</button><button id="mysteryNext">Próximo mistério ›</button></div>
  <div id="decade" class="beads" aria-label="Contador de Ave-Marias"></div><p id="countLabel">Toque nas contas conforme reza.</p>
 </section>
 
@@ -64,6 +66,13 @@
 <button class="scripture" data-ref="1Cor 11,23-26"><b>Fazei isto em memória de mim</b><span>1Cor 11,23-26</span></button>
 <button class="scripture" data-ref="Sl 62(63)"><b>Minha alma tem sede de vós</b><span>Sl 62(63)</span></button>
 </div><div class="notice">Abra a Bíblia para ler o texto integral. O app oferece a referência e o tema para evitar substituir a própria Palavra de Deus por paráfrases.</div></section>
-</main>
-<script src="app.js?v=4"></script>
+<section id="sources" class="screen"><button class="back">‹ Início</button><p class="eyebrow">VALIDAÇÃO E REFERÊNCIAS</p><h2>Fontes e Bibliografia</h2>
+<div class="validation-intro">Esta área identifica a natureza dos conteúdos do app. Textos oficiais e referências são separados das meditações editoriais e das orações devocionais.</div>
+<div class="source-card official"><span>✓ FONTE OFICIAL</span><h3>Santo Rosário — Santa Sé</h3><p>Estrutura dos vinte mistérios, referências bíblicas, forma de recitação e distribuição semanal.</p><a href="https://www.vatican.va/special/rosary/documents/misteri_po.html" target="_blank" rel="noopener">Consultar no Vaticano</a></div>
+<div class="source-card official"><span>✓ MAGISTÉRIO</span><h3>Rosarium Virginis Mariae</h3><p>São João Paulo II, Carta Apostólica, 16 de outubro de 2002. Base para o caráter contemplativo, os Mistérios Luminosos e a distribuição semanal.</p><a href="https://www.vatican.va/content/john-paul-ii/pt/apost_letters/2002/documents/hf_jp-ii_apl_20021016_rosarium-virginis-mariae.html" target="_blank" rel="noopener">Ler documento</a></div>
+<div class="source-card official"><span>✓ CATECISMO</span><h3>Catecismo da Igreja Católica</h3><p>Referência doutrinal para a presença real e a adoração eucarística, especialmente CIC 1378–1380.</p><a href="https://www.vatican.va/archive/cathechism_po/index_new/p2s2cap1_1210-1419_po.html" target="_blank" rel="noopener">Consultar Catecismo</a></div>
+<div class="source-card editorial"><span>✦ TEXTO CONTEMPLATIVO</span><h3>Meditações do aplicativo</h3><p>Textos breves redigidos para auxiliar a contemplação. Não são citações do Magistério nem substituem a Sagrada Escritura. Cada meditação é vinculada ao mistério e à passagem bíblica correspondente.</p></div>
+<div class="source-card devotional"><span>† ORAÇÃO DEVOCIONAL</span><h3>Orações tradicionais e familiares</h3><p>Serão identificadas individualmente quanto à origem. Fórmulas familiares não serão apresentadas como textos litúrgicos oficiais.</p></div>
+</section></main>
+<script src="app.js?v=5"></script>
 </body></html>
