@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#07182b"><title>Hora Santa — Adoração Eucarística</title>
-<link rel="manifest" href="manifest.webmanifest"><link rel="stylesheet" href="styles.css?v=13">
+<link rel="manifest" href="manifest.webmanifest"><link rel="stylesheet" href="styles.css?v=14">
 </head>
 <body>
 <header class="hero">
@@ -39,7 +39,17 @@
  <div class="mystery"><span>Hoje</span><strong id="dayMystery"></strong><small id="dayName"></small></div>
  <p class="rosary-note">A distribuição segue a indicação de São João Paulo II: Gozosos (segunda e sábado), Dolorosos (terça e sexta), Gloriosos (quarta e domingo) e Luminosos (quinta). A escolha pode ser adaptada por razões espirituais, pastorais ou litúrgicas.</p>
  <div class="choices"><button data-m="Gozosos">Gozosos</button><button data-m="Luminosos">Luminosos</button><button data-m="Dolorosos">Dolorosos</button><button data-m="Gloriosos">Gloriosos</button></div>
- <div id="rosaryOpening" class="rosary-opening">
+ <div class="devotion-entry"><button class="primary tears-open" id="openTears">Coroa de Nossa Senhora das Lágrimas</button><small>Devoção mariana nascida em Campinas (SP) · 1930</small></div>
+<div id="tearsDevotion" class="hidden tears-devotion">
+<button class="back" id="closeTears">‹ Rosário e Terços</button>
+<p class="eyebrow">DEVOÇÃO MARIANA · CAMPINAS</p><h2>Coroa de Nossa Senhora das Lágrimas</h2>
+<article class="tears-history"><em>HISTÓRIA DA DEVOÇÃO</em><p>A devoção está ligada à Irmã Amália de Jesus Flagelado (Amália Aguirre), religiosa das Missionárias de Jesus Crucificado. Segundo os relatos da devoção, em Campinas, em 8 de novembro de 1929, Jesus lhe ensinou as invocações às Lágrimas de sua Mãe; em 8 de março de 1930, Santa Maria teria lhe apresentado a Coroa das Lágrimas. A forma divulgada recebeu Imprimatur de Dom Francisco de Campos Barreto, então Bispo de Campinas, em 8 de março de 1931.</p><p>Trata-se de <strong>devoção privada</strong>: pode auxiliar a vida de oração, mas não pertence à liturgia e não exige dos fiéis adesão às revelações particulares.</p></article>
+<article class="tears-prayer"><em>ORAÇÃO INICIAL</em><p>Eis-nos aqui aos Vossos pés, ó dulcíssimo Jesus Crucificado, para Vos oferecermos as lágrimas d'Aquela que, com tanto amor, Vos acompanhou no caminho doloroso do Calvário. Fazei, ó bom Mestre, que nós saibamos aproveitar da lição que elas nos dão, para que, na Terra, realizando a Vossa Santíssima Vontade, possamos um dia, no Céu, Vos louvar por toda a eternidade.</p></article>
+<div class="tears-counter"><em id="tearsGroupLabel">1º GRUPO DE SETE</em><p class="major-prayer">Vede, ó Jesus, que são as lágrimas d'Aquela que mais Vos amou na Terra, e que mais Vos ama no Céu.</p><p><b>Nas sete contas:</b> Meu Jesus, ouvi os nossos rogos, pelas Lágrimas de Vossa Mãe Santíssima.</p><div id="tearsBeads" class="beads"></div><p id="tearsCount">Toque nas contas conforme reza.</p><button id="nextTearsGroup">Próximo grupo ›</button></div>
+<div id="tearsClosing" class="hidden"><article class="tears-prayer"><em>TRÊS CONTAS FINAIS · 3×</em><p>Vede, ó Jesus, que são as lágrimas d'Aquela que mais Vos amou na Terra, e que mais Vos ama no Céu.</p></article><article class="tears-prayer"><em>ORAÇÃO FINAL</em><p>Virgem Santíssima e Mãe das Dores, nós Vos pedimos que junteis os Vossos rogos aos nossos, a fim de que Jesus, Vosso Divino Filho, a quem nos dirigimos em nome das Vossas lágrimas de Mãe, ouça as nossas preces e nos conceda, com as graças que desejamos, a coroa da vida eterna. Amém.</p></article><article class="tears-prayer"><em>JACULATÓRIAS FINAIS</em><p>Por Vossa mansidão divina, ó Jesus Manietado, salvai o mundo do erro que o ameaça!</p><p>Ó Virgem Dolorosíssima, as Vossas Lágrimas derrubaram o império infernal!</p></article><button class="primary" id="finishTears">Amém · Encerrar</button></div>
+<p class="source-note">Fonte histórica e forma da oração: tradição da Coroa de Nossa Senhora das Lágrimas, Campinas; Imprimatur atribuído a Dom Francisco de Campos Barreto (1931). A apresentação histórica distingue o relato devocional de um fato de fé obrigatório.</p>
+</div>
+<div id="rosaryOpening" class="rosary-opening">
   <article><em>1 · PERSIGNAÇÃO</em><p>Pelo sinal da Santa Cruz, livrai-nos, Deus, nosso Senhor, dos nossos inimigos. Em nome do Pai, do Filho e do Espírito Santo. Amém.</p></article>
   <article><em>2 · ORAÇÕES INICIAIS</em><h3>Oração ao Divino Espírito Santo</h3><p>Vinde, Espírito Santo, enchei os corações dos vossos fiéis e acendei neles o fogo do vosso amor. Enviai o vosso Espírito, e tudo será criado, e renovareis a face da terra.</p><p><strong>Oremos:</strong> Ó Deus, que instruístes os corações dos vossos fiéis com a luz do Espírito Santo, fazei que apreciemos retamente todas as coisas segundo o mesmo Espírito e gozemos sempre de sua consolação. Por Cristo, nosso Senhor. Amém.</p><div class="opening-sequence"><strong>1 Pai-Nosso · 3 Ave-Marias · 1 Glória ao Pai</strong><small>Orações iniciais antes da contemplação dos mistérios</small><button class="text-link" data-prayer="rosaryInitial">Abrir as orações ›</button></div></article>
   <article><em>3 · DEDICAÇÃO E OFERECIMENTO</em><p>Apresente agora a intenção pela qual oferece este Rosário: pela Igreja, pela família, pelos enfermos, pelas vocações, pelos falecidos ou por uma intenção particular.</p><div class="family-badge">O oferecimento familiar próprio será preservado aqui literalmente, sem adaptação editorial.</div></article>
@@ -101,5 +111,5 @@
 <div class="source-card editorial"><span>✦ TEXTO CONTEMPLATIVO</span><h3>Meditações do aplicativo</h3><p>Textos breves redigidos para auxiliar a contemplação. Não são citações do Magistério nem substituem a Sagrada Escritura. Cada meditação é vinculada ao mistério e à passagem bíblica correspondente.</p></div>
 <div class="source-card devotional"><span>† ORAÇÃO DEVOCIONAL</span><h3>Orações tradicionais e familiares</h3><p>Serão identificadas individualmente quanto à origem. Fórmulas familiares não serão apresentadas como textos litúrgicos oficiais.</p></div>
 </section></main>
-<script src="app.js?v=19"></script>
+<script src="app.js?v=20"></script>
 </body></html>
