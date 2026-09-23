@@ -5,12 +5,47 @@ document.querySelectorAll('.back').forEach(b=>b.addEventListener('click',()=>go(
 
 const names=['domingo','segunda-feira','terça-feira','quarta-feira','quinta-feira','sexta-feira','sábado'];
 const mysteryByDay=['Gloriosos','Gozosos','Dolorosos','Gloriosos','Luminosos','Dolorosos','Gozosos'];
-const today=new Date(); document.querySelector('#dayMystery').textContent='Mistérios '+mysteryByDay[today.getDay()];
-document.querySelector('#dayName').textContent=names[today.getDay()];
-document.querySelectorAll('[data-m]').forEach(b=>b.addEventListener('click',()=>document.querySelector('#dayMystery').textContent='Mistérios '+b.dataset.m));
-
-const decade=document.querySelector('#decade'); let count=0;
+const rosaryMysteries={
+Gozosos:[
+['A Anunciação do Senhor','Lc 1,26-38','Contemplemos o sim de Santa Maria, que acolhe a Palavra de Deus e se entrega à sua vontade. Peçamos a graça de responder ao Senhor com fé, humildade e disponibilidade.'],
+['A Visitação de Santa Maria a Isabel','Lc 1,39-56','Santa Maria leva Jesus consigo e sua presença se torna serviço e alegria. Contemplemos uma fé que não se fecha em si mesma, mas se põe a caminho para servir.'],
+['O Nascimento de Jesus','Lc 2,1-20','Em Belém, Deus se aproxima na pobreza e na simplicidade. Contemplemos o Menino Jesus e peçamos um coração capaz de reconhecer a grandeza de Deus nas coisas pequenas.'],
+['A Apresentação de Jesus no Templo','Lc 2,22-35','Santa Maria e São José apresentam Jesus ao Pai. Contemplemos a vida recebida como dom e aprendamos a oferecer ao Senhor tudo o que somos e temos.'],
+['O encontro do Menino Jesus no Templo','Lc 2,41-52','Depois da procura angustiada, Santa Maria e São José encontram Jesus na casa do Pai. Peçamos perseverança para buscar Cristo e sabedoria para guardar sua Palavra no coração.']],
+Luminosos:[
+['O Batismo de Jesus no Jordão','Mt 3,13-17','Contemplemos Jesus no Jordão, revelado como Filho amado do Pai. Recordemos a graça do nosso Batismo e o chamado a viver como filhos de Deus.'],
+['Jesus nas Bodas de Caná','Jo 2,1-11','Santa Maria percebe a necessidade e conduz os serventes a Jesus: “Fazei o que Ele vos disser”. Contemplemos a confiança que escuta Cristo e se deixa transformar por Ele.'],
+['O anúncio do Reino e o convite à conversão','Mc 1,14-15','Jesus anuncia que o Reino está próximo e chama à conversão. Coloquemos diante dele aquilo que precisa mudar em nossa vida para acolher mais plenamente o Evangelho.'],
+['A Transfiguração de Jesus','Mt 17,1-8','No monte, os discípulos contemplam por um instante a glória de Cristo. Escutemos o Filho amado e peçamos fidelidade também quando o caminho passar pela cruz.'],
+['A instituição da Eucaristia','Mt 26,26-29','Contemplemos Jesus que se entrega e permanece conosco na Eucaristia. Diante do Santíssimo Sacramento, adoremos com gratidão o Senhor que nos amou até o fim.']],
+Dolorosos:[
+['A agonia de Jesus no Horto','Mt 26,36-46','Contemplemos Jesus em oração no Getsêmani. Em sua angústia, Ele se entrega à vontade do Pai. Confiemos ao Senhor nossos medos e aprendamos com Cristo a permanecer fiéis.'],
+['A flagelação de Jesus','Jo 19,1-3','Contemplemos Cristo ferido e humilhado. Apresentemos-lhe o sofrimento humano e peçamos um coração que reconheça, respeite e defenda a dignidade de cada pessoa.'],
+['A coroação de espinhos','Mt 27,27-31','O verdadeiro Rei é ridicularizado e coroado de espinhos. Contemplemos a mansidão de Cristo e peçamos libertação do orgulho, da vaidade e do desejo de dominar.'],
+['Jesus carrega a cruz','Mc 15,21-22','No caminho do Calvário, Jesus assume a cruz. Peçamos força para carregar com amor nossas responsabilidades e sensibilidade para ajudar quem sofre ao nosso lado.'],
+['A crucifixão e morte de Jesus','Lc 23,33-46','Aos pés da cruz, contemplemos o amor levado até o fim. Entreguemos a Cristo nossa vida e aprendamos com Ele o perdão, a confiança no Pai e o dom de nós mesmos.']],
+Gloriosos:[
+['A Ressurreição de Jesus','Lc 24,1-8','Cristo ressuscitou. Contemplemos a vitória da vida sobre a morte e peçamos uma esperança que nenhuma escuridão possa apagar.'],
+['A Ascensão de Jesus','At 1,6-11','Jesus volta ao Pai e confia aos discípulos a missão. Contemplemos nosso destino junto de Deus e a responsabilidade de testemunhar o Evangelho no mundo.'],
+['A vinda do Espírito Santo','At 2,1-13','O Espírito Santo desce sobre a Igreja reunida em oração. Peçamos seus dons para viver a fé com coragem, unidade e caridade.'],
+['A Assunção de Santa Maria','Ap 12,1; cf. CIC 966','Contemplemos em Santa Maria elevada à glória a esperança destinada aos que pertencem a Cristo. Peçamos que ela nos ajude a caminhar sempre para seu Filho.'],
+['A coroação de Santa Maria na glória','Ap 12,1; cf. CIC 966–972','Contemplemos Santa Maria junto de Cristo na glória, mãe e discípula fiel. Confiemos à sua intercessão a Igreja, nossas famílias e nossa perseverança no caminho de Jesus.']]
+};
+let selectedMystery=mysteryByDay[new Date().getDay()],mysteryIndex=0;
+const today=new Date();document.querySelector('#dayName').textContent=names[today.getDay()];
+function renderMystery(){
+ document.querySelector('#dayMystery').textContent='Mistérios '+selectedMystery;
+ const m=rosaryMysteries[selectedMystery][mysteryIndex];
+ document.querySelector('#mysteryMeditation').innerHTML='<article class="mystery-card"><div class="mystery-number">'+(mysteryIndex+1)+'º MISTÉRIO</div><h3>'+m[0]+'</h3><div class="scripture-ref">'+m[1]+'</div><p>'+m[2]+'</p><div class="decade-order">Pai-Nosso · 10 Ave-Marias · Glória ao Pai</div><small>Meditação editorial baseada no mistério e na referência bíblica indicada.</small></article>';
+ document.querySelector('#mysteryPrev').disabled=mysteryIndex===0;document.querySelector('#mysteryNext').disabled=mysteryIndex===4;
+}
+document.querySelectorAll('[data-m]').forEach(b=>b.addEventListener('click',()=>{selectedMystery=b.dataset.m;mysteryIndex=0;resetBeads();renderMystery()}));
+document.querySelector('#mysteryPrev').onclick=()=>{if(mysteryIndex){mysteryIndex--;resetBeads();renderMystery()}};
+document.querySelector('#mysteryNext').onclick=()=>{if(mysteryIndex<4){mysteryIndex++;resetBeads();renderMystery()}};
+const decade=document.querySelector('#decade');let count=0;
+function resetBeads(){count=0;[...decade.children].forEach(x=>x.classList.remove('done'));document.querySelector('#countLabel').textContent='Toque nas contas conforme reza.'}
 for(let i=1;i<=10;i++){const b=document.createElement('button');b.className='bead';b.setAttribute('aria-label','Ave-Maria '+i);b.addEventListener('click',()=>{b.classList.toggle('done');count=[...decade.children].filter(x=>x.classList.contains('done')).length;document.querySelector('#countLabel').textContent=count+' de 10 Ave-Marias';});decade.appendChild(b)}
+renderMystery();
 
 const guideSteps=[
 {kind:'rubric',title:'Antes de começar',time:'Preparação',body:'Confirme com a paróquia quem fará a exposição e a reposição. Se o Santíssimo já estiver exposto, inicie o roteiro em clima de silêncio. A condutora não realiza a bênção eucarística.'},
