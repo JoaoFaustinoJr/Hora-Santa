@@ -3,6 +3,25 @@ function go(id){screens.forEach(s=>s.classList.toggle('active',s.id===id));scrol
 document.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>go(b.dataset.go)));
 document.querySelectorAll('.back').forEach(b=>b.addEventListener('click',()=>go('home')));
 
+
+const scriptureTexts={
+'Jo 6,35-40':{title:'Eu sou o pão da vida',text:'Jesus se apresenta como o Pão da vida e promete que quem vem a Ele não terá fome. Ele veio para realizar a vontade do Pai e não perder nenhum daqueles que lhe foram confiados.'},
+'Jo 15,1-11':{title:'Permanecei em mim',text:'Jesus é a videira verdadeira e nós somos os ramos. Ele nos chama a permanecer nele, porque separados dele nada podemos fazer. Permanecer em seu amor e guardar seus mandamentos conduz à alegria plena.'},
+'Lc 22,14-20':{title:'Isto é o meu corpo',text:'Na ceia, Jesus toma o pão, dá graças, parte-o e o entrega aos discípulos, dizendo que é seu Corpo entregue por eles. Do mesmo modo, apresenta o cálice da nova Aliança em seu Sangue.'},
+'Lc 24,28-35':{title:'Reconheceram-no ao partir o pão',text:'Os discípulos de Emaús pedem a Jesus: “Ficai conosco”. À mesa, Ele toma o pão, abençoa-o, parte-o e lhes dá. Então seus olhos se abrem e eles o reconhecem.'},
+'1Cor 11,23-26':{title:'Fazei isto em memória de mim',text:'São Paulo transmite o que recebeu do Senhor: na noite em que foi entregue, Jesus tomou o pão e o cálice e mandou fazer isso em sua memória. Ao celebrá-lo, a Igreja anuncia a morte do Senhor até que Ele venha.'},
+'Sl 62(63)':{title:'Minha alma tem sede de vós',text:'O salmista procura Deus desde a aurora: sua alma tem sede do Senhor. Recorda-o durante a noite, louva-o e encontra nele auxílio e abrigo.'}
+};
+let scriptureReturn='bible';
+function openInternalScripture(ref,returnTo){
+ scriptureReturn=returnTo||document.querySelector('.screen.active')?.id||'bible';
+ const d=scriptureTexts[ref]||{title:'Palavra de Deus',text:'Leia e contemple a passagem indicada: '+ref+'.'};
+ document.querySelector('#scriptureTitle').textContent=d.title;
+ document.querySelector('#scriptureContent').innerHTML='<h3>'+ref+'</h3><p>'+d.text+'</p><small class="ref-note">Leitura para oração dentro do aplicativo. A referência bíblica é preservada para consulta integral em sua Bíblia, sem abrir páginas com publicidade.</small>';
+ go('scriptureReader');
+}
+document.querySelectorAll('.scripture-return').forEach(b=>b.onclick=()=>go(scriptureReturn));
+
 const names=['domingo','segunda-feira','terça-feira','quarta-feira','quinta-feira','sexta-feira','sábado'];
 const mysteryByDay=['Gloriosos','Gozosos','Dolorosos','Gloriosos','Luminosos','Dolorosos','Gozosos'];
 const rosaryMysteries={
@@ -46,6 +65,7 @@ function renderMystery(){
  document.querySelector('#dayMystery').textContent='Mistérios '+selectedMystery;
  const m=rosaryMysteries[selectedMystery][mysteryIndex];
  document.querySelector('#mysteryMeditation').innerHTML='<article class="mystery-card"><div class="mystery-number">'+(mysteryIndex+1)+'º MISTÉRIO</div><h3>'+m[0]+'</h3><a class="scripture-ref scripture-link" href="'+bibleLink(m[1])+'" target="_blank" rel="noopener">'+m[1]+' · Ler o texto bíblico ↗</a><p>'+m[2]+'</p><div class="decade-order">1 Pai-Nosso · 10 Ave-Marias · 1 Glória ao Pai · Jaculatória</div><small>Meditação editorial baseada no mistério e na referência bíblica indicada.</small></article>';
+ const rb=document.querySelector('#mysteryMeditation [data-rosary-ref]');if(rb)rb.onclick=()=>openInternalScripture(rb.dataset.rosaryRef,'rosary');
  document.querySelector('#mysteryPrev').disabled=mysteryIndex===0;document.querySelector('#mysteryNext').disabled=mysteryIndex===4;
 }
 document.querySelectorAll('[data-m]').forEach(b=>b.addEventListener('click',()=>{selectedMystery=b.dataset.m;mysteryIndex=0;resetBeads();renderMystery()}));
@@ -88,11 +108,7 @@ function renderGuide(){
  const scriptureBtn=stage.querySelector('[data-guide-ref]');
  if(scriptureBtn) scriptureBtn.onclick=()=>openGuideScripture(scriptureBtn.dataset.guideRef);
 }
-function openGuideScripture(ref){
- sessionStorage.setItem('horaSantaGuideReturn',JSON.stringify({guideIndex,scrollY:window.scrollY}));
- const w=window.open(bibleLink(ref),'_blank');
- if(!w) location.href=bibleLink(ref);
-}
+function openGuideScripture(ref){openInternalScripture(ref,'guide')}
 window.addEventListener('focus',()=>{
  const saved=sessionStorage.getItem('horaSantaGuideReturn');if(!saved)return;
  try{const r=JSON.parse(saved);if(Number.isInteger(r.guideIndex)){guideIndex=r.guideIndex;renderGuide();requestAnimationFrame(()=>window.scrollTo({top:r.scrollY||0,behavior:'auto'}));}}catch(e){}
@@ -129,7 +145,7 @@ eucharisticLitany:{title:'Invocações eucarísticas',text:'Jesus, presente no S
 };
 document.querySelectorAll('[data-prayer]').forEach(b=>b.addEventListener('click',()=>{const p=prayers[b.dataset.prayer];const r=b.dataset.prayer==='rosaryInitial'?document.querySelector('#rosaryInitialReader'):document.querySelector('#prayerReader');if(!p||!r)return;r.innerHTML='<em>ORAÇÃO</em><h3>'+p.title+'</h3><p>'+p.text+'</p>';r.classList.remove('hidden');r.scrollIntoView({behavior:'smooth',block:'center'})}));
 
-document.querySelectorAll('.scripture[data-ref]').forEach(b=>{b.addEventListener('click',()=>window.open(bibleLink(b.dataset.ref),'_blank','noopener'))});
+document.querySelectorAll('.scripture[data-ref]').forEach(b=>b.addEventListener('click',()=>openInternalScripture(b.dataset.ref,'bible')));
 
 function nextThursday(from=new Date()){const d=new Date(from);d.setHours(0,0,0,0);let add=(4-d.getDay()+7)%7;if(add===0&&from.getHours()>=23)add=7;d.setDate(d.getDate()+add);return d}
 function fmtDate(d){return d.toLocaleDateString('pt-BR',{weekday:'long',day:'2-digit',month:'long'})}
