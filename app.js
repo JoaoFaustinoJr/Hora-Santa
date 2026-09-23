@@ -36,7 +36,7 @@ const today=new Date();document.querySelector('#dayName').textContent=names[toda
 function renderMystery(){
  document.querySelector('#dayMystery').textContent='Mistérios '+selectedMystery;
  const m=rosaryMysteries[selectedMystery][mysteryIndex];
- document.querySelector('#mysteryMeditation').innerHTML='<article class="mystery-card"><div class="mystery-number">'+(mysteryIndex+1)+'º MISTÉRIO</div><h3>'+m[0]+'</h3><div class="scripture-ref">'+m[1]+'</div><p>'+m[2]+'</p><div class="decade-order">Pai-Nosso · 10 Ave-Marias · Glória ao Pai</div><small>Meditação editorial baseada no mistério e na referência bíblica indicada.</small></article>';
+ document.querySelector('#mysteryMeditation').innerHTML='<article class="mystery-card"><div class="mystery-number">'+(mysteryIndex+1)+'º MISTÉRIO</div><h3>'+m[0]+'</h3><div class="scripture-ref">'+m[1]+'</div><p>'+m[2]+'</p><div class="decade-order">Pai-Nosso · 10 Ave-Marias · Glória ao Pai · Jaculatória</div><small>Meditação editorial baseada no mistério e na referência bíblica indicada.</small></article>';
  document.querySelector('#mysteryPrev').disabled=mysteryIndex===0;document.querySelector('#mysteryNext').disabled=mysteryIndex===4;
 }
 document.querySelectorAll('[data-m]').forEach(b=>b.addEventListener('click',()=>{selectedMystery=b.dataset.m;mysteryIndex=0;resetBeads();renderMystery()}));
@@ -46,6 +46,7 @@ const decade=document.querySelector('#decade');let count=0;
 function resetBeads(){count=0;[...decade.children].forEach(x=>x.classList.remove('done'));document.querySelector('#countLabel').textContent='Toque nas contas conforme reza.'}
 for(let i=1;i<=10;i++){const b=document.createElement('button');b.className='bead';b.setAttribute('aria-label','Ave-Maria '+i);b.addEventListener('click',()=>{b.classList.toggle('done');count=[...decade.children].filter(x=>x.classList.contains('done')).length;document.querySelector('#countLabel').textContent=count+' de 10 Ave-Marias';});decade.appendChild(b)}
 renderMystery();
+document.querySelector('#beginMysteries').onclick=()=>{document.querySelector('#rosaryOpening').classList.add('hidden');document.querySelector('#rosaryContemplation').classList.remove('hidden');document.querySelector('#mysteryMeditation').scrollIntoView({behavior:'smooth',block:'start'})};
 
 const guideSteps=[
 {kind:'rubric',title:'Antes de começar',time:'Preparação',body:'Confirme com a paróquia quem fará a exposição e a reposição. Se o Santíssimo já estiver exposto, inicie o roteiro em clima de silêncio. A condutora não realiza a bênção eucarística.'},
