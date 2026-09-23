@@ -46,3 +46,11 @@ document.querySelector('#guidePrev').onclick=()=>{if(guideIndex){if(timerHandle)
 document.querySelector('#guideNext').onclick=()=>{if(guideIndex<guideSteps.length-1){if(timerHandle)clearInterval(timerHandle);timerHandle=null;remaining=0;guideIndex++;renderGuide()}else go('home')};
 renderGuide();
 if('serviceWorker' in navigator) navigator.serviceWorker.register('./sw.js');
+const prayers={
+spirit:{title:'Vinde, Espírito Santo',text:'Vinde, Espírito Santo, enchei os corações dos vossos fiéis e acendei neles o fogo do vosso amor. Enviai o vosso Espírito e tudo será criado. E renovareis a face da terra.'},
+adoration:{title:'Ato de adoração',text:'Senhor Jesus, presente na Santíssima Eucaristia, nós vos adoramos. Reconhecemos em vós nosso Senhor e Salvador. Recebei nossa fé, nossa esperança e nosso amor; ensinai-nos a permanecer em vossa presença com coração humilde e agradecido.'},
+thanks:{title:'Ação de graças',text:'Senhor Jesus, nós vos damos graças por vossa presença, por vossa Palavra, pela Igreja e por todos os dons que recebemos. Fazei que a gratidão se transforme em caridade e que levemos aos irmãos aquilo que recebemos em vossa presença.'},
+family:{title:'Pelas famílias',text:'Senhor Jesus, olhai por nossas famílias. Fortalecei os esposos, protegei as crianças e os jovens, consolai os idosos e enfermos, reconciliai os que estão divididos e fazei de nossos lares lugares de fé, perdão e amor.'},
+vocations:{title:'Pelas vocações',text:'Senhor da messe, suscitai vocações santas para o sacerdócio, a vida consagrada, o matrimônio e o serviço generoso na Igreja. Dai aos jovens coragem para escutar e responder ao vosso chamado.'}
+};
+document.querySelectorAll('[data-prayer]').forEach(b=>b.addEventListener('click',()=>{const p=prayers[b.dataset.prayer],r=document.querySelector('#prayerReader');r.innerHTML='<em>ORAÇÃO</em><h3>'+p.title+'</h3><p>'+p.text+'</p>';r.classList.remove('hidden');r.scrollIntoView({behavior:'smooth',block:'center'})}));
