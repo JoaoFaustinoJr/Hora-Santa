@@ -1,7 +1,7 @@
 const screens=[...document.querySelectorAll('.screen')];
 function go(id){screens.forEach(s=>s.classList.toggle('active',s.id===id));scrollTo({top:0,behavior:'smooth'})}
 document.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>go(b.dataset.go)));
-document.querySelectorAll('.back').forEach(b=>b.addEventListener('click',()=>go('home')));
+document.querySelectorAll('.back').forEach(b=>b.addEventListener('click',()=>{if(b.closest('#resources'))go('home');else if(['rosary','bible','prayers','songs','prepare','calendar','sources'].includes(b.closest('.screen')?.id))go('resources');else go('home')}));
 
 
 const scriptureTexts={
