@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#07182b"><title>Hora Santa — Adoração Eucarística</title>
-<link rel="manifest" href="manifest.webmanifest"><link rel="stylesheet" href="styles.css?v=10">
+<link rel="manifest" href="manifest.webmanifest"><link rel="stylesheet" href="styles.css?v=11">
 </head>
 <body>
 <header class="hero">
@@ -20,7 +20,7 @@
     <button data-go="rosary"><span class="symbol">✧</span><b>Rosário e Terços</b><span>Com Santa Maria, para Jesus</span></button>
   </div>
   <nav class="tiles">
-    <button data-go="prepare"><span>◇</span>Preparar Adoração</button><button data-go="prayers"><span>†</span>Orações</button>
+    <button data-go="prepare"><span>◇</span>Preparar Adoração</button><button data-go="prayers"><span>†</span>Compêndio</button>
     <button data-go="songs"><span>♪</span>Cantos</button><button data-go="bible"><span>☰</span>Bíblia</button><button data-go="calendar"><span>▣</span>Calendário</button><button data-go="sources"><span>✓</span>Fontes</button>
   </nav>
 </section>
@@ -61,12 +61,17 @@
 <section id="now" class="screen"><button class="back">‹ Início</button><p class="eyebrow">CAPELA VIRTUAL</p><h2>Adorar Agora</h2><div class="grid"><button><b>Na igreja</b><span>Modo contemplativo</span></button><a class="live-card" href="https://www.youtube.com/@EWTNPolska/streams" target="_blank" rel="noopener"><b>Em casa · Ao vivo</b><span>Niepokalanów, Polônia</span></a></div><article class="marian-live"><em>✦ ADORAÇÃO PERPÉTUA INTERNACIONAL</em><h3>Capela Estrela da Imaculada</h3><p>Em Niepokalanów, a imagem de Santa Maria acolhe ao centro o ostensório com o Santíssimo Sacramento. A transmissão integra a iniciativa internacional de oração pela paz.</p><a href="https://www.youtube.com/@EWTNPolska/streams" target="_blank" rel="noopener">Abrir transmissão de adoração ›</a></article><div class="notice">A transmissão pode auxiliar a oração em casa, mas não substitui a presença física diante da Santíssima Eucaristia.</div></section>
 <section id="calendar" class="screen"><button class="back">‹ Início</button><p class="eyebrow">QUINTA-FEIRA EUCARÍSTICA</p><h2>Calendário da Adoração</h2><div id="adorationCalendar" class="adoration-calendar"></div><div class="calendar-actions"><button class="primary" id="calendarAdd">Adicionar próximas quintas ao calendário</button><button id="notifyAdoration">Ativar alerta no aparelho</button></div><p class="rosary-note">A Adoração habitual é marcada às quintas-feiras. O botão de calendário cria eventos no calendário do aparelho; os alertas do próprio calendário são a forma mais confiável de lembrar mesmo com o app fechado.</p></section>
 <section id="prepare" class="screen"><button class="back">‹ Início</button><h2>Preparar Adoração</h2><p>Monte um roteiro com Palavra, meditação, silêncio, intercessões, devoções e cantos.</p></section>
-<section id="prayers" class="screen"><button class="back">‹ Início</button><p class="eyebrow">BIBLIOTECA DEVOCIONAL</p><h2>Orações</h2><div class="library-list">
-<button class="library-item" data-prayer="spirit"><b>Vinde, Espírito Santo</b><span>Preparação para a oração</span></button>
-<button class="library-item" data-prayer="adoration"><b>Ato de adoração</b><span>Diante de Jesus Eucarístico</span></button>
-<button class="library-item" data-prayer="thanks"><b>Ação de graças</b><span>Gratidão e entrega</span></button>
-<button class="library-item" data-prayer="family"><b>Pelas famílias</b><span>Intercessão</span></button>
-<button class="library-item" data-prayer="vocations"><b>Pelas vocações</b><span>Intercessão</span></button>
+<section id="prayers" class="screen"><button class="back">‹ Início</button><p class="eyebrow">COMPÊNDIO DE ORAÇÃO</p><h2>Orações para a Adoração</h2><p class="rosary-note">Orações comuns da tradição católica, devoções e textos próprios para permanecer diante de Jesus Eucarístico. Os textos litúrgicos e devocionais são identificados sem confundir devoção privada com o rito da bênção eucarística.</p><div class="prayer-filter"><button data-pcat="all">Todas</button><button data-pcat="traditional">Tradicionais</button><button data-pcat="adoration">Adoração</button><button data-pcat="litany">Ladainhas</button></div><div class="library-list">
+<button class="library-item" data-pgroup="traditional" data-prayer="spirit"><b>Vinde, Espírito Santo</b><span>Preparação para a oração</span></button>
+<button class="library-item" data-pgroup="adoration" data-prayer="adoration"><b>Ato de adoração</b><span>Diante de Jesus Eucarístico</span></button>
+<button class="library-item" data-pgroup="adoration" data-prayer="thanks"><b>Ação de graças</b><span>Gratidão e entrega</span></button>
+<button class="library-item" data-pgroup="adoration" data-prayer="family"><b>Pelas famílias</b><span>Intercessão</span></button>
+<button class="library-item" data-pgroup="adoration" data-prayer="vocations"><b>Pelas vocações</b><span>Intercessão</span></button>
+<button class="library-item" data-pgroup="traditional" data-prayer="anima"><b>Alma de Cristo</b><span>Oração tradicional · união com Cristo</span></button>
+<button class="library-item" data-pgroup="adoration" data-prayer="stay"><b>Senhor, ficai conosco</b><span>Adoração eucarística · São João Paulo II</span></button>
+<button class="library-item" data-pgroup="adoration" data-prayer="faith"><b>Meu Senhor e meu Deus</b><span>Ato breve de fé e adoração</span></button>
+<button class="library-item" data-pgroup="litany" data-prayer="heartLitany"><b>Ladainha do Sagrado Coração de Jesus</b><span>Devoção tradicional aprovada pela Igreja</span></button>
+<button class="library-item" data-pgroup="litany" data-prayer="eucharisticLitany"><b>Invocações eucarísticas</b><span>Para oração diante do Santíssimo</span></button>
 </div><article id="prayerReader" class="prayer-reader hidden"></article></section>
 <section id="songs" class="screen"><button class="back">‹ Início</button><p class="eyebrow">O QUE CANTAR AGORA?</p><h2>Cantos por momento</h2><div class="song-groups">
 <article><em>EXPOSIÇÃO E ADORAÇÃO</em><h3>Tão Sublime Sacramento</h3><p>Tradicional • apropriado ao culto eucarístico</p></article>
@@ -90,5 +95,5 @@
 <div class="source-card editorial"><span>✦ TEXTO CONTEMPLATIVO</span><h3>Meditações do aplicativo</h3><p>Textos breves redigidos para auxiliar a contemplação. Não são citações do Magistério nem substituem a Sagrada Escritura. Cada meditação é vinculada ao mistério e à passagem bíblica correspondente.</p></div>
 <div class="source-card devotional"><span>† ORAÇÃO DEVOCIONAL</span><h3>Orações tradicionais e familiares</h3><p>Serão identificadas individualmente quanto à origem. Fórmulas familiares não serão apresentadas como textos litúrgicos oficiais.</p></div>
 </section></main>
-<script src="app.js?v=16"></script>
+<script src="app.js?v=17"></script>
 </body></html>
