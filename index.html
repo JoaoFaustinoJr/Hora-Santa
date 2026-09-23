@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#07182b"><title>Hora Santa — Adoração Eucarística</title>
-<link rel="manifest" href="manifest.webmanifest"><link rel="stylesheet" href="styles.css?v=5">
+<link rel="manifest" href="manifest.webmanifest"><link rel="stylesheet" href="styles.css?v=6">
 </head>
 <body>
 <header class="hero">
@@ -38,9 +38,16 @@
  <div class="mystery"><span>Hoje</span><strong id="dayMystery"></strong><small id="dayName"></small></div>
  <p class="rosary-note">A distribuição segue a indicação de São João Paulo II: Gozosos (segunda e sábado), Dolorosos (terça e sexta), Gloriosos (quarta e domingo) e Luminosos (quinta). A escolha pode ser adaptada por razões espirituais, pastorais ou litúrgicas.</p>
  <div class="choices"><button data-m="Gozosos">Gozosos</button><button data-m="Luminosos">Luminosos</button><button data-m="Dolorosos">Dolorosos</button><button data-m="Gloriosos">Gloriosos</button></div>
- <div id="mysteryMeditation"></div>
+ <div id="rosaryOpening" class="rosary-opening">
+  <article><em>1 · PERSIGNAÇÃO</em><p>Pelo sinal da Santa Cruz, livrai-nos, Deus, nosso Senhor, dos nossos inimigos. Em nome do Pai, do Filho e do Espírito Santo. Amém.</p></article>
+  <article><em>2 · ORAÇÕES INICIAIS</em><h3>Oração ao Divino Espírito Santo</h3><p>Vinde, Espírito Santo, enchei os corações dos vossos fiéis e acendei neles o fogo do vosso amor. Enviai o vosso Espírito, e tudo será criado, e renovareis a face da terra.</p><p><strong>Oremos:</strong> Ó Deus, que instruístes os corações dos vossos fiéis com a luz do Espírito Santo, fazei que apreciemos retamente todas as coisas segundo o mesmo Espírito e gozemos sempre de sua consolação. Por Cristo, nosso Senhor. Amém.</p><div class="opening-sequence">Pai-Nosso · Ave-Maria · Glória ao Pai</div></article>
+  <article><em>3 · DEDICAÇÃO E OFERECIMENTO</em><p>Apresente agora a intenção pela qual oferece este Rosário: pela Igreja, pela família, pelos enfermos, pelas vocações, pelos falecidos ou por uma intenção particular.</p><div class="family-badge">O oferecimento familiar próprio será preservado aqui literalmente, sem adaptação editorial.</div></article>
+  <button class="primary" id="beginMysteries">Iniciar contemplação dos mistérios</button>
+ </div>
+ <div id="rosaryContemplation" class="hidden"><div id="mysteryMeditation"></div>
  <div class="rosary-nav"><button id="mysteryPrev">‹ Mistério anterior</button><button id="mysteryNext">Próximo mistério ›</button></div>
  <div id="decade" class="beads" aria-label="Contador de Ave-Marias"></div><p id="countLabel">Toque nas contas conforme reza.</p>
+ <div class="decade-prayers"><b>Após as Ave-Marias</b><p>Glória ao Pai, ao Filho e ao Espírito Santo. Como era no princípio, agora e sempre. Amém.</p><p class="jaculatory"><strong>Jaculatória:</strong> Ó meu Jesus, perdoai-nos, livrai-nos do fogo do inferno, levai as almas todas para o Céu e socorrei principalmente as que mais precisarem.</p></div></div>
 </section>
 
 <section id="now" class="screen"><button class="back">‹ Início</button><p class="eyebrow">CAPELA VIRTUAL</p><h2>Adorar Agora</h2><div class="grid"><button><b>Na igreja</b><span>Modo contemplativo</span></button><button><b>Em casa</b><span>Transmissões ao vivo</span></button></div><div class="notice">A transmissão pode auxiliar a oração em casa, mas não substitui a presença física diante da Santíssima Eucaristia.</div></section>
@@ -74,5 +81,5 @@
 <div class="source-card editorial"><span>✦ TEXTO CONTEMPLATIVO</span><h3>Meditações do aplicativo</h3><p>Textos breves redigidos para auxiliar a contemplação. Não são citações do Magistério nem substituem a Sagrada Escritura. Cada meditação é vinculada ao mistério e à passagem bíblica correspondente.</p></div>
 <div class="source-card devotional"><span>† ORAÇÃO DEVOCIONAL</span><h3>Orações tradicionais e familiares</h3><p>Serão identificadas individualmente quanto à origem. Fórmulas familiares não serão apresentadas como textos litúrgicos oficiais.</p></div>
 </section></main>
-<script src="app.js?v=5"></script>
+<script src="app.js?v=6"></script>
 </body></html>
