@@ -17,7 +17,8 @@ function openInternalScripture(ref,returnTo){
  scriptureReturn=returnTo||document.querySelector('.screen.active')?.id||'bible';
  const d=scriptureTexts[ref]||{title:'Palavra de Deus',text:'Leia e contemple a passagem indicada: '+ref+'.'};
  document.querySelector('#scriptureTitle').textContent=d.title;
- document.querySelector('#scriptureContent').innerHTML='<h3>'+ref+'</h3><p>'+d.text+'</p><small class="ref-note">Leitura para oração dentro do aplicativo. A referência bíblica é preservada para consulta integral em sua Bíblia, sem abrir páginas com publicidade.</small>';
+ const q=encodeURIComponent(ref+' Bíblia Ave Maria');
+ document.querySelector('#scriptureContent').innerHTML='<h3>'+ref+'</h3><p>'+d.text+'</p><div class="scripture-actions"><a class="primary scripture-source" href="https://www.google.com/search?q='+q+'" target="_blank" rel="noopener"><b>Ler a passagem integral</b><span>Bíblia Ave Maria · localizar em fonte católica ›</span></a><a class="scripture-source secondary" href="https://www.vatican.va/archive/bible/index_po.htm" target="_blank" rel="noopener"><b>Bíblia no Vaticano</b><span>Consultar as Sagradas Escrituras ›</span></a></div><small class="ref-note">A passagem integral é aberta na fonte externa para respeitar a edição e os direitos do texto bíblico. Ao retornar, você continua no mesmo ponto da Adoração.</small>';
  go('scriptureReader');
 }
 document.querySelectorAll('.scripture-return').forEach(b=>b.onclick=()=>go(scriptureReturn));
