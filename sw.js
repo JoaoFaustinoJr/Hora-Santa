@@ -1,1 +1,14 @@
-const CACHE='hora-santa-v53';const ASSETS=['./styles.css?v=43','./app.js?v=27','./opening-fix.js','./manifest.webmanifest','./assets/images/eucaristia-adoracao.png','./assets/images/rosario-santa-maria.png','./assets/images/adorar-agora.png','./assets/images/simbolos-selos.png','./assets/images/layout-hora-santa.png'];self.addEventListener('install',e=>{self.skipWaiting();e.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS)))});self.addEventListener('activate',e=>e.waitUntil(Promise.all([caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)))),self.clients.claim()])));self.addEventListener('fetch',e=>{const u=new URL(e.request.url);if(u.pathname.endsWith('/app.js')){e.respondWith(Promise.all([fetch(e.request,{cache:'no-store'}).then(r=>r.text()),fetch('./opening-fix.js?v=53',{cache:'no-store'}).then(r=>r.text())]).then(([app,fix])=>new Response(app+'\n'+fix,{headers:{'Content-Type':'application/javascript; charset=utf-8','Cache-Control':'no-store'}})).catch(()=>caches.match(e.request)));return}if(e.request.mode==='navigate'||e.request.destination==='document'){e.respondWith(fetch(e.request,{cache:'no-store'}).catch(()=>caches.match('./')));return}e.respondWith(fetch(e.request).then(r=>{const x=r.clone();caches.open(CACHE).then(c=>c.put(e.request,x));return r}).catch(()=>caches.match(e.request))) });
+const CACHE='hora-santa-v54';
+const SHELL=['./index.html','./styles.css?v=43','./app.js?v=54','./opening-fix.js?v=54','./manifest.webmanifest'];
+self.addEventListener('install',event=>{self.skipWaiting();event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(SHELL)))});
+self.addEventListener('activate',event=>{event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>key!==CACHE).map(key=>caches.delete(key)))).then(()=>self.clients.claim()))});
+self.addEventListener('fetch',event=>{
+  if(event.request.method!=='GET') return;
+  const url=new URL(event.request.url);
+  if(url.origin!==self.location.origin) return;
+  event.respondWith(fetch(event.request,{cache:'no-store'}).then(response=>{
+    if(response&&response.ok){const copy=response.clone();caches.open(CACHE).then(cache=>cache.put(event.request,copy))}
+    return response;
+  }).catch(()=>caches.match(event.request).then(hit=>hit||((event.request.mode==='navigate'||event.request.destination==='document')?caches.match('./index.html'):undefined))));
+});
+self.addEventListener('message',event=>{if(event.data&&event.data.type==='SKIP_WAITING')self.skipWaiting();if(event.data&&event.data.type==='CLEAR_OLD_CACHES')event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>key!==CACHE).map(key=>caches.delete(key)))))});
