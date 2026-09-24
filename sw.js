@@ -1,5 +1,5 @@
-const CACHE='hora-santa-v56';
-const SHELL=['./index.html','./styles.css?v=56','./app.js?v=56','./opening-fix.js?v=56','./manifest.webmanifest'];
+const CACHE='hora-santa-v57';
+const SHELL=['./index.html','./styles.css?v=57','./app.js?v=57','./opening-fix.js?v=57','./manifest.webmanifest'];
 self.addEventListener('install',event=>{self.skipWaiting();event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(SHELL)))});
 self.addEventListener('activate',event=>{event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>key!==CACHE).map(key=>caches.delete(key)))).then(()=>self.clients.claim()))});
 self.addEventListener('fetch',event=>{
