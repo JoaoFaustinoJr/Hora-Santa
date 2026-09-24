@@ -179,3 +179,7 @@ document.querySelector('#openJoseph').onclick=()=>chapletShell('Terço de São J
 
 /* v66 — atalhos do compêndio para as devoções */
 document.querySelectorAll('[data-open-chaplet]').forEach(b=>b.addEventListener('click',()=>{const id=b.dataset.openChaplet;setTimeout(()=>{document.querySelector(id==='tears'?'#openTears':id==='mercy'?'#openMercy':'#openJoseph')?.click()},80)}));
+
+/* v72 — métricas GA4 de uso do app, sem conteúdo de orações/intencoes */
+document.addEventListener('click',e=>{const el=e.target.closest('button,a');if(!el||typeof gtag!=='function')return;let eventName=null,label=(el.innerText||el.getAttribute('aria-label')||'').trim().replace(/\s+/g,' ').slice(0,80);if(el.matches('[data-go]'))eventName='app_navigation';else if(el.id==='installApp')eventName='install_click';else if(el.id==='shareApp')eventName='share_click';else if(el.matches('.guide-devotion-link'))eventName='guide_devotion_open';else if(el.matches('.scripture,.guide-scripture-link'))eventName='scripture_open';else if(el.matches('.library-item'))eventName='prayer_open';else if(el.id==='openMercy'||el.id==='openJoseph'||el.id==='openTears')eventName='chaplet_open';if(eventName)gtag('event',eventName,{item_name:label});});
+window.addEventListener('appinstalled',()=>{if(typeof gtag==='function')gtag('event','pwa_installed')});
