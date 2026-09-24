@@ -80,3 +80,6 @@ body:not(.home-view)>.hero{display:none!important}
 body.home-view>.hero{display:flex!important}
 body.home-view main{padding-top:0!important}
 @media(max-width:560px){body.home-view>.art-hero{min-height:650px!important;display:flex!important}}
+
+/* v59 — único ajuste sobre a base estável v58: desce discretamente o banner da capa */
+@media(max-width:560px){body.home-view .art-hero .hero-copy{transform:translateY(40px)!important}}
