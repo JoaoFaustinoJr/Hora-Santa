@@ -74,3 +74,9 @@ body:has(#home.active) .art-hero{min-height:58vh!important}body:has(#home.active
 
 /* v46 — ajuste fino vertical da capa */
 @media(max-width:560px){.art-hero{min-height:650px!important}.art-hero .art-title{top:64%!important}.cover-info{padding-top:18px!important;padding-bottom:92px!important}.cover-info .welcome-status{margin:0 auto!important}.cover-info .home-quote{margin-top:14px!important}}
+
+/* v58 — correção estrutural: hero visível somente na capa */
+body:not(.home-view)>.hero{display:none!important}
+body.home-view>.hero{display:flex!important}
+body.home-view main{padding-top:0!important}
+@media(max-width:560px){body.home-view>.art-hero{min-height:650px!important;display:flex!important}}
