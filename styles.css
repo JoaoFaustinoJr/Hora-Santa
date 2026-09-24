@@ -86,3 +86,6 @@ body.home-view main{padding-top:0!important}
 
 /* v60 — ajuste isolado da capa: banner mais baixo e azul mais translúcido */
 @media(max-width:560px){body.home-view .art-hero .hero-copy{transform:translateY(65px)!important;background:linear-gradient(180deg,rgba(4,28,46,.52),rgba(4,28,46,.68))!important;backdrop-filter:blur(1.5px);-webkit-backdrop-filter:blur(1.5px)}}
+
+/* v61 — assinatura autoral discreta, somente no fim da página Fontes */
+#sources .jf-signature{margin:34px 0 8px;text-align:right;color:rgba(215,182,107,.48);font-size:.78rem;font-style:italic;letter-spacing:.02em}#sources .jf-signature span{font-family:cursive;font-size:.92rem;margin-left:.18em;color:rgba(215,182,107,.55)}
