@@ -83,3 +83,6 @@ body.home-view main{padding-top:0!important}
 
 /* v59 — único ajuste sobre a base estável v58: desce discretamente o banner da capa */
 @media(max-width:560px){body.home-view .art-hero .hero-copy{transform:translateY(40px)!important}}
+
+/* v60 — ajuste isolado da capa: banner mais baixo e azul mais translúcido */
+@media(max-width:560px){body.home-view .art-hero .hero-copy{transform:translateY(65px)!important;background:linear-gradient(180deg,rgba(4,28,46,.52),rgba(4,28,46,.68))!important;backdrop-filter:blur(1.5px);-webkit-backdrop-filter:blur(1.5px)}}
