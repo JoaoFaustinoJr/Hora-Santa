@@ -1,14 +1,5 @@
-const CACHE='hora-santa-v75';
-const SHELL=['./index.html','./styles.css?v=75','./app.js?v=75','./opening-fix.js?v=75','./manifest.webmanifest'];
-self.addEventListener('install',event=>{self.skipWaiting();event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(SHELL)))});
-self.addEventListener('activate',event=>{event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>key!==CACHE).map(key=>caches.delete(key)))).then(()=>self.clients.claim()))});
-self.addEventListener('fetch',event=>{
-  if(event.request.method!=='GET') return;
-  const url=new URL(event.request.url);
-  if(url.origin!==self.location.origin) return;
-  event.respondWith(fetch(event.request,{cache:'no-store'}).then(response=>{
-    if(response&&response.ok){const copy=response.clone();caches.open(CACHE).then(cache=>cache.put(event.request,copy))}
-    return response;
-  }).catch(()=>caches.match(event.request).then(hit=>hit||((event.request.mode==='navigate'||event.request.destination==='document')?caches.match('./index.html'):undefined))));
-});
-self.addEventListener('message',event=>{if(event.data&&event.data.type==='SKIP_WAITING')self.skipWaiting();if(event.data&&event.data.type==='CLEAR_OLD_CACHES')event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>key!==CACHE).map(key=>caches.delete(key)))))});
+const CACHE='hora-santa-offline-v1';
+const CORE=['./','./index.html','./styles.css?v=75','./app.js?v=75','./opening-fix.js?v=75','./manifest.webmanifest','./assets/images/file_000000007350820e96e0465d2421fb8e.png'];
+self.addEventListener('install',event=>{self.skipWaiting();event.waitUntil(caches.open(CACHE).then(cache=>Promise.allSettled(CORE.map(url=>cache.add(url)))))});
+self.addEventListener('activate',event=>event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>key!==CACHE).map(key=>caches.delete(key)))).then(()=>self.clients.claim())));
+self.addEventListener('fetch',event=>{if(event.request.method!=='GET')return;const url=new URL(event.request.url);if(url.origin!==self.location.origin)return;event.respondWith(caches.match(event.request,{ignoreSearch:true}).then(hit=>{const fresh=fetch(event.request).then(response=>{if(response&&response.ok)caches.open(CACHE).then(cache=>cache.put(event.request,response.clone()));return response}).catch(()=>null);if(hit){fresh.catch(()=>{});return hit}return fresh.then(response=>response||((event.request.mode==='navigate'||event.request.destination==='document')?caches.match('./index.html'):undefined))}))});
